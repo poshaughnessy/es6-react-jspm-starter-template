@@ -1,10 +1,10 @@
 {
-  "name": "react-three-test",
+  "name": "es6-react-jspm-starter-template",
   "version": "0.0.1",
-  "description": "Demo of react-three",
+  "description": "Starter tempalte for ES6, React, JSPM and System.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/poshaughnessy/react-three-test.git"
+    "url": "https://github.com/poshaughnessy/es6-react-jspm-starter-template.git"
   },
   "author": "Peter O'Shaughnessy <peter.oshaughnessy@gmail.com> (http://www.peteroshaughnessy.com)",
   "license": "MIT",
