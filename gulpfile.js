@@ -19,6 +19,9 @@ var gulp = require('gulp'),
     server = require('./server'),
     Builder = require('systemjs-builder');
 
+/**
+ * SystemJS / Babel build
+ */
 function buildJS(isForProd) {
 
     return new Promise(function(resolve, reject) {
@@ -114,6 +117,7 @@ gulp.task('compile-dev', ['sass', 'build-dev'], function() {
  */
 gulp.task('watch', ['compile-dev'], function() {
     gulp.watch('./styles/*.scss', ['sass']);
+    gulp.watch('./src/**/*.js', ['build-dev']);
 });
 
 /**

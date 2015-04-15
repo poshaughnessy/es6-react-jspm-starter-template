@@ -13929,7 +13929,7 @@ System.register("src/components/app.js!github:floatdrop/plugin-jsx@1.1.0", ["npm
                 _createClass(AppComponent, [{
                     key: "render",
                     value: function render() {
-                        return React.createElement("h1", null, "Hello");
+                        return React.createElement("h1", null, "Hello 2");
                     }
                 }]);
 
