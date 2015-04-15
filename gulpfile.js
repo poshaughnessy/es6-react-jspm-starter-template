@@ -11,7 +11,7 @@ Object.getPrototypeOf.toString = function() {return Object.toString();};
 
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
-    replace = require('gulp-replace'),
+    htmlreplace = require('gulp-html-replace'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     fs = require('fs'),
@@ -19,10 +19,15 @@ var gulp = require('gulp'),
     server = require('./server'),
     Builder = require('systemjs-builder');
 
+var paths = {
+    temp: '.tmp',
+    dist: 'dist'
+};
+
 /**
- * SystemJS / Babel build
+ * SystemJS / Babel build for distribution
  */
-function buildJS(isForProd) {
+function buildJSDist() {
 
     return new Promise(function(resolve, reject) {
 
@@ -33,16 +38,14 @@ function buildJS(isForProd) {
         builder.loadConfig('./config.js')
             .then(function() {
 
-                //builder.loader.baseURL = path.resolve('.');
-
                 var hrTime = process.hrtime();
                 var t1 = hrTime[0] * 1000 + hrTime[1] / 1000000;
 
                 console.log('Building bundle...');
 
                 // Make a Self-Executing (SFX) bundle
-                builder.buildSFX('src/main', isForProd ? 'dist/js/bundle.min.js' : 'dist/js/bundle.js',
-                    {minify: isForProd, sourceMaps: isForProd})
+                builder.buildSFX('src/main', paths.dist + '/js/bundle.min.js',
+                    {minify: true, sourceMaps: true})
                     .then(function() {
 
                         hrTime = process.hrtime();
@@ -63,61 +66,62 @@ function buildJS(isForProd) {
 
 }
 
-/**
- *  Compile and concatenate the SCSS files into dist/styles.css
- */
-gulp.task('sass', function() {
+function buildSass(isDist) {
 
     return gulp.src('./styles/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}))
         .pipe(sourcemaps.write())
         .pipe(concat('styles.css'))
-        .pipe(gulp.dest('./dist/css'));
+        .pipe(gulp.dest((isDist ? paths.dist : paths.temp) + '/css'));
 
+}
+
+/**
+ *  Compile and concatenate the SCSS files into dist directory
+ */
+gulp.task('sass-dist', function() {
+    buildSass(true);
 });
 
 /**
- * Build JS for development
+ *  Compile and concatenate the SCSS files into temp directory
  */
-gulp.task('build-dev', function(cb) {
+gulp.task('sass-dev', function() {
+    buildSass(false);
+});
 
-    return buildJS(false).then(function() {
+
+/**
+ * Build step for development is simply compiling the sass (we serve the JS directly from src)
+ */
+gulp.task('build-dev', ['sass-dev'], function() {
+});
+
+/**
+ * Build JS for distribution (production / production testing)
+ */
+gulp.task('build-dist', function() {
+
+    return buildJSDist(true).then(function() {
 
         gulp.src('src/index.html')
-            .pipe(gulp.dest('dist'));
+            .pipe(htmlreplace(({
+                'css': 'css/styles.css',
+                'jsHead': 'js/bundle.min.js',
+                'jsBody': ''
+            })))
+            .pipe(gulp.dest(paths.dist));
 
     });
 
-});
-
-/**
- * Build JS for production
- */
-gulp.task('build-prod', function() {
-
-    return buildJS(true).then(function() {
-
-        gulp.src('src/index.html')
-            .pipe(replace(/bundle/g, 'bundle.min'))
-            .pipe(gulp.dest('dist'));
-
-    });
-
-});
-
-/**
- * Compile SCSS
- */
-gulp.task('compile-dev', ['sass', 'build-dev'], function() {
 });
 
 /**
  * Compile and watch for changes
  */
-gulp.task('watch', ['compile-dev'], function() {
-    gulp.watch('./styles/*.scss', ['sass']);
-    gulp.watch('./src/**/*.js', ['build-dev']);
+gulp.task('watch', ['build-dev'], function() {
+    gulp.watch('./styles/*.scss', ['sass-dev']);
 });
 
 /**
@@ -129,7 +133,7 @@ gulp.task('serve', ['watch'], function() {
 });
 
 /**
- * By default, runs the compile task
+ * By default, runs the dev build task
  */
-gulp.task('default', ['compile-dev'], function() {
+gulp.task('default', ['build-dev'], function() {
 });
