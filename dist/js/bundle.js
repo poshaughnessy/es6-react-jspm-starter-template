@@ -10441,7 +10441,7 @@ System.register("npm:react@0.13.1", ["npm:react@0.13.1/react"], true, function(r
   return module.exports;
 });
 
-System.register("src/components/app.js!github:floatdrop/plugin-jsx@1.1.0", ["npm:babel-runtime@5.1.9/helpers/inherits", "npm:babel-runtime@5.1.9/helpers/create-class", "npm:babel-runtime@5.1.9/helpers/class-call-check", "npm:react@0.13.1"], function (_export) {
+System.register("src/components/placeholderComponent.js!github:floatdrop/plugin-jsx@1.1.0", ["npm:babel-runtime@5.1.9/helpers/inherits", "npm:babel-runtime@5.1.9/helpers/create-class", "npm:babel-runtime@5.1.9/helpers/class-call-check", "npm:react@0.13.1"], function (_export) {
     var _inherits, _createClass, _classCallCheck, React, AppComponent;
 
     return {
@@ -10471,7 +10471,7 @@ System.register("src/components/app.js!github:floatdrop/plugin-jsx@1.1.0", ["npm
                 _createClass(AppComponent, [{
                     key: "render",
                     value: function render() {
-                        return React.createElement("h1", null, "Hello 5");
+                        return React.createElement("div", null, React.createElement("p", null, "This is a starting point for a project that uses:"), React.createElement("ul", null, React.createElement("li", null, React.createElement("a", { href: "https://github.com/lukehoban/es6features" }, "ES6 (aka EcmaScript 2015)")), React.createElement("li", null, React.createElement("a", { href: "https://facebook.github.io/react/" }, "React")), React.createElement("li", null, React.createElement("a", { href: "https://github.com/systemjs/systemjs" }, "SystemJS")), React.createElement("li", null, React.createElement("a", { href: "http://jspm.io/" }, "JSPM")), React.createElement("li", null, React.createElement("a", { href: "https://babeljs.io/" }, "Babel")), React.createElement("li", null, React.createElement("a", { href: "http://gulpjs.com/" }, "Gulp")), React.createElement("li", null, React.createElement("a", { href: "https://nodejs.org/" }, "Node")), React.createElement("li", null, React.createElement("a", { href: "http://expressjs.com/" }, "Express"))), React.createElement("p", null, "See the GitHub repository at: ", React.createElement("a", { href: "https://github.com/poshaughnessy/es6-react-jspm-starter-template" }, "github.com/poshaughnessy/es6-react-jspm-starter-template")), React.createElement("p", null, "Feel free to fork, copy or use however you like."), React.createElement("p", null, "Also please get in touch via ", React.createElement("a", { href: "mailto:peter.oshaughnessy@gmail.com" }, "email"), " or ", React.createElement("a", { href: "http://twitter.com/poshaughnessy" }, "Twitter"), " if you have any comments/suggestions/questions."), React.createElement("p", null, React.createElement("em", null, "Peter O'Shaughnessy")));
                     }
                 }]);
 
@@ -10482,18 +10482,18 @@ System.register("src/components/app.js!github:floatdrop/plugin-jsx@1.1.0", ["npm
         }
     };
 });
-System.register('src/main', ['npm:react@0.13.1', 'src/components/app.js!github:floatdrop/plugin-jsx@1.1.0'], function (_export) {
-    var React, AppComponent;
+System.register('src/main', ['npm:react@0.13.1', 'src/components/placeholderComponent.js!github:floatdrop/plugin-jsx@1.1.0'], function (_export) {
+    var React, PlaceholderComponent;
     return {
         setters: [function (_npmReact0131) {
             React = _npmReact0131['default'];
-        }, function (_srcComponentsAppJsGithubFloatdropPluginJsx110) {
-            AppComponent = _srcComponentsAppJsGithubFloatdropPluginJsx110['default'];
+        }, function (_srcComponentsPlaceholderComponentJsGithubFloatdropPluginJsx110) {
+            PlaceholderComponent = _srcComponentsPlaceholderComponentJsGithubFloatdropPluginJsx110['default'];
         }],
         execute: function () {
             'use strict';
 
-            React.render(React.createElement(AppComponent, { history: true }), document.getElementById('app'));
+            React.render(React.createElement(PlaceholderComponent, { history: true }), document.getElementById('app'));
         }
     };
 });
