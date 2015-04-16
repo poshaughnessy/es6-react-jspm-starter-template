@@ -14,7 +14,7 @@ class AppComponent extends React.Component {
                     <li><a href="http://jspm.io/">JSPM</a></li>
                     <li><a href="https://babeljs.io/">Babel</a></li>
                     <li><a href="http://gulpjs.com/">Gulp</a></li>
-                    <li><a href="https://nodejs.org/">Node</a></li>
+                    <li><a href="https://iojs.org/en/index.html">io.js</a></li>
                     <li><a href="http://expressjs.com/">Express</a></li>
                 </ul>
 

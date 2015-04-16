@@ -30,6 +30,13 @@ gulp serve
 
 Gulp will watch for JS and SCSS changes and recompile, but it won't live-reload (I just prefer to Cmd+R).
 
+## Warning
+
+I decided to take out Babel transpilation on the server-side and use built-in ES6 support in io.js. But enabling
+"in progress" features, such as arrow functions, is "highly discouraged unless for testing purposes". See:
+
+https://iojs.org/en/es6.html
+
 ## See also
 
 This is one of a collection of three ES6 starter templates. The others are:
