@@ -28,7 +28,6 @@
     }
   },
   "devDependencies": {
-    "babel": "^5.1.9",
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
     "gulp-replace": "^0.5.3",
@@ -37,6 +36,7 @@
     "systemjs-builder": "^0.10.4"
   },
   "dependencies": {
+    "babel": "^5.1.9",
     "express": "^4.12.3"
   }
 }
