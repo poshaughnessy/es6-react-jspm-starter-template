@@ -10,7 +10,7 @@
  * NB. Heroku supports some ES6 language features through the --harmony flag, but only a subset. See:
  * https://devcenter.heroku.com/articles/node-best-practices#try-new-things
  */
-require('babel/register');
+//require('babel/register');
 
 var server = require('./server');
 
