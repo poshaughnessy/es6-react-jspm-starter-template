@@ -8,7 +8,7 @@ This is a little starting template for an ES6 (a.k.a. EcmaScript 2015) project u
  * JSPM
  * Sass
  * Gulp
- * Node
+ * io.js
  * Express
 
 ## Instructions
